@@ -1,1 +1,53 @@
+<div class="container-fluid"></div>
+
+<mat-toolbar color="white">
+  <mat-toolbar-row>
+    <mat-icon>shopping_cart </mat-icon>
+    <span headline>Fake Store</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-tree
+  [dataSource]="dataSource"
+  [treeControl]="treeControl"
+  class="example-tree"
+>
+  <!-- This is the tree node template for leaf nodes -->
+  <!-- There is inline padding applied to this node using styles.
+    This padding value depends on the mat-icon-button width. -->
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+    {{ node.name }}
+  </mat-tree-node>
+  <!-- This is the tree node template for expandable nodes -->
+  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+    <div class="mat-tree-node">
+      <button
+        mat-icon-button
+        matTreeNodeToggle
+        [attr.aria-label]="'Toggle ' + node.name"
+      >
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
+        </mat-icon>
+      </button>
+      {{ node.name }}
+    </div>
+    <!-- There is inline padding applied to this div using styles.
+          This padding value depends on the mat-icon-button width.  -->
+    <div
+      [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+      role="group"
+    >
+      <ng-container matTreeNodeOutlet></ng-container>
+    </div>
+  </mat-nested-tree-node>
+</mat-tree>
+<nav mat-tab-nav-bar ngClass="tabs">
+  <a mat-button routerLink="/" target="_blank"> All products </a>
+  <div *ngFor="let category of categories">
+    <a mat-button [routerLink]="['/category', category]" target="_blank">{{
+      category
+    }}</a>
+  </div>
+</nav>
+
 <router-outlet></router-outlet>

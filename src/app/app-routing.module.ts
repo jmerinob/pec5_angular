@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CategoryComponent } from './components/category/category.component';
 
-import { ImageComponent } from './components/image/image.component';
-import { ImagesComponent } from './components/images/images.component';
+import { ProductComponent } from './components/product/product.component';
+import { ProductsComponent } from './components/products/products.component';
 
 const routes: Routes = [
-  {path: '', component: ImagesComponent},
-  {path:'image/:id', component: ImageComponent},
-  {path: '**' , component: ImagesComponent}
+  {path: '', component: ProductsComponent},
+  {path:'product/:id', component: ProductComponent},
+  {path:'category/:category',component: CategoryComponent},
+  {path: '**' , component: ProductsComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled'
+    initialNavigation: 'enabledBlocking'
 })],
   exports: [RouterModule]
 })

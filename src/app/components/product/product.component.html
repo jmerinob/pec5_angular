@@ -1,0 +1,107 @@
+<div class="wrapper" *ngIf="isLoading">
+  <div class="inner">
+    <div class="container"><mat-spinner></mat-spinner></div>
+  </div>
+</div>
+
+<div @fade class="container" *ngIf="!isLoading">
+  <mat-card class="mat-elevation-z1 round mat-tab-group card-container">
+    <mat-card-header>
+      <mat-card-title>{{ product.title }}</mat-card-title>
+      <mat-card-subtitle>{{ product.category }} </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutGap="25px">
+        <div fxFlex="60%">
+          <p>
+            <img
+              class="image"
+              mat-card-image
+              src="{{ product.image }}"
+              alt="photo"
+            />
+          </p>
+        </div>
+        <div fxFlex="5%">
+          <mat-card-subtitle><mat-icon>share</mat-icon></mat-card-subtitle>
+          <mat-card-subtitle
+            ><mat-icon>favorite_border</mat-icon>
+          </mat-card-subtitle>
+        </div>
+        <div fxFlex="35%">
+          <p>
+            <mat-card-subtitle class="money mat-display-1">{{
+              product.price
+            }}</mat-card-subtitle>
+            <mat-card-subtitle>
+              <mat-icon
+                [ngStyle]="{
+                  color: product.rating.rate > 0 ? '#ffcc00' : 'grey'
+                }"
+                >star</mat-icon
+              >
+              <mat-icon
+                [ngStyle]="{
+                  color: product.rating.rate > 1 ? '#ffcc00' : 'grey'
+                }"
+                >star</mat-icon
+              >
+              <mat-icon
+                [ngStyle]="{
+                  color: product.rating.rate > 2 ? '#ffcc00' : 'grey'
+                }"
+                >star</mat-icon
+              >
+              <mat-icon
+                [ngStyle]="{
+                  color: product.rating.rate > 3 ? '#ffcc00' : 'grey'
+                }"
+                >star</mat-icon
+              >
+              <mat-icon
+                [ngStyle]="{
+                  color: product.rating.rate > 4 ? '#ffcc00' : 'grey'
+                }"
+                >star</mat-icon
+              >
+
+              <b>{{ product.rating.rate }} of 5</b> -
+              {{ product.rating.count }} ratings</mat-card-subtitle
+            >
+            <mat-card-subtitle
+              ><mat-icon>add_shopping_cart</mat-icon></mat-card-subtitle
+            ><mat-card-subtitle>
+              <mat-tab-group>
+                <mat-tab label="Product Description">
+                  <p class="justify">
+                    {{ product.description }}
+                  </p></mat-tab
+                >
+                <mat-tab label="Product details"
+                  ><mat-list role="list">
+                    <mat-list-item role="listitem"
+                      ><p><b>Brand:</b> Fake brand</p></mat-list-item
+                    >
+                    <mat-list-item role="listitem"
+                      ><p>
+                        <b>Item model number: </b> CWYF-1444
+                      </p></mat-list-item
+                    >
+                    <mat-list-item role="listitem"
+                      ><p><b>Item Weight: </b> 2.1 Kg</p></mat-list-item
+                    >
+                  </mat-list></mat-tab
+                >
+              </mat-tab-group>
+            </mat-card-subtitle>
+          </p>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="right">
+      <a mat-button routerLink="/" target="_blank"
+        ><mat-icon>arrow_back</mat-icon></a
+      >
+    </mat-card-actions>
+  </mat-card>
+</div>
